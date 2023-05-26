@@ -1,0 +1,14 @@
+.table {
+  display: flex;
+}
+
+.content {
+flex: 1;
+  padding: 20px;
+}
+.button{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}

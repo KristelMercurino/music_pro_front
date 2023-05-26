@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataGrid } from '@mui/material';
+import { DataGrid } from '@mui/x-data-grid';
 
 const DataTable = ({ rows, columns, pageSize }) => {
   return (

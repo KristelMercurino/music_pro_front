@@ -16,6 +16,7 @@ import AccountantHome from "./pages/accountant-home";
 import AccountantTracking from "./pages/accountant-tracking";
 import SellerHome from "./pages/seller-home";
 import GrocerHome from "./pages/grocer-home";
+import AdminUsersManagement from "./pages/admin-users-management";
 
 function App() {
   const [token, setToken] = useState(null);
@@ -142,8 +143,12 @@ function App() {
           />
 
           <Route
-            path="/admin-home"
+            path="/admin-home/*"
             element={<AdminHome handleLogout={handleLogout} />}
+          />
+             <Route
+            path="/admin-users-management/*"
+            element={<AdminUsersManagement handleLogout={handleLogout} />}
           />
           <Route
             path="/accountant"

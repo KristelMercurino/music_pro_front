@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link,Route,Routes } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Stack from "@mui/material/Stack";
@@ -19,32 +19,46 @@ import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutl
 import PersonRemoveOutlinedIcon from '@mui/icons-material/PersonRemoveOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import CurrencyExchangeOutlinedIcon from '@mui/icons-material/CurrencyExchangeOutlined';
-
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import CssBaseline from "@mui/material/CssBaseline";
-import { useState } from "react";
-
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import "./admin-home.css";
+import AdminUsersManagement from "../admin-users-management";
+
+import DataTable from "../../components/table";
+import {fetchService} from '../../services/api'
+
 
 
 import Sidebar from '../../components/simple-sidebar';
 
+import axios from "axios";
+import qs from "qs";
+
+const BASE_URL = "http://192.168.126.128/integracion-plataformas";
+
+
 const Home = ({ handleLogout }) => {
   const sidebarOptions = [
-    { label: 'Registrar Usuarios', icon: <PersonAddAltOutlinedIcon />, link: '#' },
-    { label: 'Editar Usuarios', icon: <ModeEditOutlineOutlinedIcon />, link: '#' },
+    { label: 'Gestionar Usuarios', icon: <PersonAddAltOutlinedIcon />, link: '/admin-home/users-management' },
+   /* { label: 'Editar Usuarios', icon: <ModeEditOutlineOutlinedIcon />, link: '#' },
     { label: 'Eliminar Usuarios', icon: <PersonRemoveOutlinedIcon />, link: '#' },
+    */
     { label: 'Generar informes', icon: <BookmarkBorderOutlinedIcon />, link: '#' },
     { label: 'Estrategia de ventas', icon: <CurrencyExchangeOutlinedIcon />, link: '#' },
   ];
 
+
+
   return (
     <div className="home">
+
       <Sidebar options={sidebarOptions} />
       <div className="content">
-        {/* Content of the home page */}
-        <h1>Welcome to the Home Page</h1>
+        <Routes>
+          <Route exact path="/users-management" element={<AdminUsersManagement/> }/>
+        </Routes>
       </div>
     </div>
   );

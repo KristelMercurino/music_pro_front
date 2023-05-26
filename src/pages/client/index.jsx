@@ -1,36 +1,50 @@
-import React, { useEffect, useState } from 'react';
-
-import ClientProducts from "./products"
+import React, { useEffect, useState } from "react";
+import { Navigate  } from 'react-router-dom';
+import ClientProducts from "./products";
 import { Route, Routes } from "react-router-dom";
 
+import auth from "../../services/auth";
+import Loading from "../../components/loading"
+import { ROLE_REDIRECT } from "../../constants/home_roles";
 
-import auth from '../../services/auth'
-import {ROLE_REDIRECT} from '../../constants/home_roles'
+import "./client.css";
 
+const ALLOWED_ROLE = "Cliente";
 
-import "./client.css"
+const Home = ({ handleLogout }) => {
+  const [authorized, setAuthorized] = useState(null);
+  const [role, setRole] = useState(null);
 
-const Home = ({handleLogout}) => {
 
   useEffect(() => {
     const authenticated = auth.isAuthenticated();
-    const role = auth.getRole()
+    const role = auth.getRole();
 
-    if (!authenticated){
-      window.location = '/login';
+    if (!authenticated) {
+      window.location = "/login";
     }
-    if (role !== "Cliente"){
+    if (role !== ALLOWED_ROLE) {
       window.location = ROLE_REDIRECT[role];
-
     }
-  }, [])
 
+    setAuthorized(authenticated);
+    setRole(role);
+  }, []);
+
+  // if (!authorized) {
+  //   return <Navigate  to="/login" />; // Redirige al inicio de sesión si el usuario no tiene el rol requerido
+  // }
+  console.log("authorized", authorized)
   return (
     <div className="client-content">
-      <Routes>
-        <Route exact path="/" element={<ClientProducts/> }/>
-      </Routes>
-  </div>
+      {authorized && role === ALLOWED_ROLE ? (
+        <Routes>
+          <Route exact path="/" element={<ClientProducts />} />
+        </Routes>
+      ): (
+        <Loading/>
+      )}
+    </div>
   );
 };
 

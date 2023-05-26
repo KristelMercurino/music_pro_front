@@ -1,0 +1,19 @@
+.root {
+  background-color: #232f3e;
+  font-size: small;
+  height: 10px;
+
+}
+
+.category-toolbar {
+  background-color: #131921;
+  padding: 0px 20px;
+  display: flex;
+  overflow-x: auto;
+  /* height:20px; */
+}
+
+.category-toolbar > * {
+  color: #fff;
+  margin-right: 20px;
+}

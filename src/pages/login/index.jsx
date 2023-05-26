@@ -13,14 +13,30 @@ const Login = ({ handleLogin }) => {
   const handlePasswordChange = (e) => setPassword(e.target.value);
   const handleRoleChange = (e) => setRole(e.target.value);
 
+
+  const fetchAxios = async (method, data, endpoint_name) => {
+    try {
+      const response = await fetchService(method, data, endpoint_name);
+      console.log(response);
+      const user_data = JSON.stringify(response.data.datos_usuario);
+      const token = response.data.token;
+      const role = response.data.datos_usuario.perfil_nombre;
+      handleLogin(role, token, user_data)
+      // Realiza las acciones necesarias con los datos de respuesta
+    } catch (error) {
+      // Maneja el error si ocurre alguno
+    }
+  };
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = {
       email: username,
       password: password
     }
-    const response = fetchService("POST", data, "login_email");
-    console.log(response)
+    fetchAxios("POST", data, "login_email");
+    
     //handleLogin(username, password, role);
   };
 
@@ -51,7 +67,7 @@ const Login = ({ handleLogin }) => {
               onChange={handlePasswordChange}
             />
           </div>
-          <div className="form-group">
+          {/* <div className="form-group">
             <label>Role</label>
             <select className="form-control" value={role} onChange={handleRoleChange}>
               <option value="Cliente">Cliente</option>
@@ -60,7 +76,7 @@ const Login = ({ handleLogin }) => {
               <option value="Vendedor">Vendedor</option>
               <option value="Bodeguero">Bodeguero</option>
             </select>
-          </div>
+          </div> */}
           {error && <p className="login-error">{error}</p>}
           <button type="submit" className="btn btn-primary">
             Login

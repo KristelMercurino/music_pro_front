@@ -10,13 +10,15 @@ import axios from "axios";
 import Login from "./pages/login";
 import Header from "./components/simple-header";
 import Footer from "./components/simple-footer";
-import AdminHome from "./pages/admin-home";
+import AdminHome from "./pages/admin";
 import ClientHome from "./pages/client-home";
 import AccountantHome from "./pages/accountant-home";
 import AccountantTracking from "./pages/accountant-tracking";
 import SellerHome from "./pages/seller-home";
 import GrocerHome from "./pages/grocer-home";
-import AdminUsersManagement from "./pages/admin-users-management";
+
+import {ROLE_REDIRECT} from './constants/home_roles'
+
 
 function App() {
   const [token, setToken] = useState(null);
@@ -45,18 +47,16 @@ function App() {
   //     }
   //   };
 
-  const handleLogin = (username, password, role) => {
+  const handleLogin = (role, token, user_data) => {
     //e.preventDefault();
     try {
-      setToken("7WK5T79u5mIzjIXXi2oI9Fglmgivv7RAJ7izyj9tUyQ");
-      localStorage.setItem(
-        "token",
-        "7WK5T79u5mIzjIXXi2oI9Fglmgivv7RAJ7izyj9tUyQ"
-      );
+      setToken(token);
+      localStorage.setItem("token", token);
       setRole(role);
       localStorage.setItem("role", role);
+      localStorage.setItem("user", user_data);
 
-      window.location = role_redirect[role];
+      window.location = ROLE_REDIRECT[role];
 
       // // Redirect to appropriate home page based on user role
       // if (role === 'client') {
@@ -143,12 +143,8 @@ function App() {
           />
 
           <Route
-            path="/admin-home/*"
+            path="/admin/*"
             element={<AdminHome handleLogout={handleLogout} />}
-          />
-             <Route
-            path="/admin-users-management/*"
-            element={<AdminUsersManagement handleLogout={handleLogout} />}
           />
           <Route
             path="/accountant"

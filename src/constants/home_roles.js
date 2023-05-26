@@ -1,6 +1,6 @@
 export const ROLE_REDIRECT = {
     Cliente: "/",
-    Administrador: "/admin-home",
+    Administrador: "/admin",
     Contador: "/accountant",
     Vendedor: "/seller-home",
     Bodeguero: "/grocer-home",

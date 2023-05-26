@@ -46,7 +46,7 @@ const BASE_URL = "http://192.168.126.128/integracion-plataformas";
 const Home = ({ handleLogout }) => {
 
   const sidebarOptions = [
-    { label: 'Gestionar Usuarios', icon: <PersonAddAltOutlinedIcon />, link: '/admin-home/users-management' },
+    { label: 'Gestionar Usuarios', icon: <PersonAddAltOutlinedIcon />, link: '/admin/users-management' },
    /* { label: 'Editar Usuarios', icon: <ModeEditOutlineOutlinedIcon />, link: '#' },
     { label: 'Eliminar Usuarios', icon: <PersonRemoveOutlinedIcon />, link: '#' },
     */

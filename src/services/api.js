@@ -1,7 +1,8 @@
 import axios from "axios";
 import qs from "qs";
 
-const BASE_URL = "http://192.168.126.128";
+// const BASE_URL = "http://192.168.126.128";
+const BASE_URL = "http://192.168.119.128";
 
 const ENDPOINTS = {
   login_email: "/integracion-plataformas/auth-email",

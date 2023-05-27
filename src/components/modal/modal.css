@@ -1,0 +1,26 @@
+.modal-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 20px;
+    position: relative;
+    width: 500px;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .close-button {
+    align-self: flex-start;
+  }
+  

@@ -1,15 +1,17 @@
 import axios from "axios";
 import qs from "qs";
-
-// const BASE_URL = "http://192.168.126.128";
-const BASE_URL = "http://192.168.119.128";
+import auth from "./auth"
+// const BASE_URL = "http://192.168.126.128/integracion-plataformas";
+const BASE_URL = "http://192.168.119.128/integracion-plataformas";
 
 const ENDPOINTS = {
-  login_email: "/integracion-plataformas/auth-email",
-  login_username: "/integracion-plataformas/auth-nomusuario",
+  login_email: "/auth-email",
+  login_username: "auth-nomusuario",
+  listar_usuarios: "/listar-usuarios",
 };
 
 export const fetchService = async (method, data, endpoint) => {
+  data.token = auth.getToken();
   const options = {
     method: method,
     maxBodyLength: Infinity,

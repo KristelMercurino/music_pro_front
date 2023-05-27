@@ -16,7 +16,7 @@ import React, { useState, useEffect } from "react";
 import { Stack, Grid, Typography, Slider } from "@mui/material";
 import Carousel from 'react-material-ui-carousel'
 import Pagination from "@mui/material/Pagination";
-import "./client-home.css"
+// import "./home-products.css"
 
 const Home = ({handleLogout}) => {
   const [products, setProducts] = useState([]);

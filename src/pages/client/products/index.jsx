@@ -16,6 +16,8 @@ import React, { useState, useEffect } from "react";
 import { Stack, Grid, Typography, Slider } from "@mui/material";
 import Carousel from 'react-material-ui-carousel'
 import Pagination from "@mui/material/Pagination";
+import {fetchService} from '../../../services/api';
+import { Modal, Button, IconButton } from "@mui/material";
 // import "./home-products.css"
 
 const Home = ({handleLogout}) => {
@@ -24,6 +26,18 @@ const Home = ({handleLogout}) => {
   const [priceFilter, setPriceFilter] = useState([0, 500]);
   const [typeFilter, setTypeFilter] = useState("all");
   const productsPerPage = 12;
+
+  const fetchAxios = async (method, data, endpoint_name) => {
+    try {
+      const response = await fetchService(method, data, endpoint_name);
+     // console.log(response.data);
+      setProducts(response.data);
+      console.log(products);
+      // Realiza las acciones necesarias con los datos de respuesta
+    } catch (error) {
+      // Maneja el error si ocurre alguno
+    }
+  };
 
   // Mock products data for guitar acoustic and electric
   const guitarProducts = [
@@ -58,10 +72,11 @@ const Home = ({handleLogout}) => {
     },
     // ... add more guitar electric products
   ];
+  
 
   // Fetch products from JSON Placeholder API
   useEffect(() => {
-    setProducts(guitarProducts);
+    fetchAxios("POST",{}, "listar_productos")
   }, []);
 
   // Pagination - Change page
@@ -78,24 +93,37 @@ const Home = ({handleLogout}) => {
   const handleTypeChange = (event) => {
     setTypeFilter(event.target.value);
   };
+  let filteredProducts =[]
+  let currentProducts =[]
+  useEffect(() => {
+     // Get current products based on filters
+   filteredProducts = products.filter((product) => {
+    const precio = parseFloat(product.precio);
 
-  // Get current products based on filters
-  const filteredProducts = products.filter((product) => {
-    const price = parseFloat(product.price);
-    const meetsPriceFilter = price >= priceFilter[0] && price <= priceFilter[1];
-    const meetsTypeFilter = typeFilter === "all" || product.type === typeFilter;
+    const meetsPriceFilter = precio >= priceFilter[0] && precio <= priceFilter[1];
+    const meetsTypeFilter = typeFilter === "all" || product.nombre_categoria === typeFilter;
     return meetsPriceFilter && meetsTypeFilter;
   });
+
+
 
   // Get current products for the current page
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(
+  currentProducts = filteredProducts.slice(
     indexOfFirstProduct,
     indexOfLastProduct
-  );
+  ); 
+  }, [products]);
+ 
+    const change_format = (numberString) =>{
+    const number = parseFloat(numberString);
+    const formattedNumber = number.toLocaleString();
+      return formattedNumber;
+    }
 
   return (
+    
     <>
     
     <Stack direction="row" className="home" maxWidth="lg">
@@ -136,19 +164,21 @@ const Home = ({handleLogout}) => {
       </Carousel>
         <div className="product-cards-container">
           <Grid container spacing={3}>
-            {currentProducts.map((product) => (
+            {products.map((product) => (
+          
               <Grid item xs={12} sm={6} md={4} key={product.id}>
+                    {console.log("productos",products)}
                 <div className="card">
                   <img
                     src={product.image}
-                    alt={product.title}
-                    className="card-image"
+                    alt={product.nombre}
+                    className="card-imagen"
                   />
                   <Typography variant="h6" component="div" gutterBottom>
-                    {product.title}
+                    {product.nombre}
                   </Typography>
                   <Typography variant="body2" component="div" gutterBottom>
-                    ${product.price}
+                    ${change_format(product.precio)}
                   </Typography>
                 </div>
               </Grid>

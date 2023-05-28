@@ -36,7 +36,7 @@ const Header = ({ userType, handleLogout }) => {
   };
 
   const renderCategoryToolbar = () => {
-    if (userType === 'client') {
+    if (userType === 'Cliente') {
       return (
         <Toolbar className='category-toolbar' variant="dense">
           {categories.map((category, index) => (
@@ -72,7 +72,7 @@ const Header = ({ userType, handleLogout }) => {
           <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
         </Menu>
       </Toolbar>
-      {renderCategoryToolbar()}
+
     </AppBar>
   );
 };

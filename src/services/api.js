@@ -1,5 +1,6 @@
 import axios from "axios";
 import qs from "qs";
+import auth from "./auth";
 
 const BASE_URL = "http://192.168.126.128/integracion-plataformas";
 
@@ -7,6 +8,7 @@ const ENDPOINTS = {
   login_email: "/auth-email",
   login_username: "auth-nomusuario",
   listar_usuarios: "/listar-usuarios",
+  listar_productos: "/listar-instrumentos",
   insertar_usuario: "/insertar-usuario"
 };
 

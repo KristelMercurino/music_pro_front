@@ -1,0 +1,33 @@
+.product-cards {
+    flex: 1;
+    padding: 20px;
+    min-height: 500px;
+    /* margin-left: 200px; */
+  }
+  
+  .product-cards-container {
+    min-height: 450px;
+  }
+  
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+  }
+  
+  .card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+
+  .imagen-carrusel {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+}

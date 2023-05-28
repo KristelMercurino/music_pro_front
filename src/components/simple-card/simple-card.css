@@ -1,0 +1,33 @@
+.product-card {
+    width: calc(33.33% - 20px);
+    margin: 10px;
+  }
+  .card{
+    border-radius:10px  ;
+
+}
+.custom-textfield .MuiInputBase-input {
+  height: 40px; /* Ajusta la altura deseada */
+}
+
+.grid-agregar{
+  margin-top: 5px;
+  display: 'flex';
+  justify-content: 'center';
+  align-items: 'center';
+}
+
+.boton-carrito{
+  background-color: yellow; /* Color de fondo amarillo */
+  color: black; /* Color del texto en negro */
+  border: none; /* Sin borde */
+  padding: 8px 16px; /* Espaciado interno del botón */
+  border-radius: 4px; /* Bordes redondeados */
+}
+
+.card-imagen{
+  width: 70%; /* Ajusta el ancho al 100% del contenedor */
+  height: auto; /* Calcula automáticamente la altura proporcional */
+  object-fit: contain; /* Ajusta la imagen sin deformarla */
+  margin-bottom: 10px;
+}

@@ -28,3 +28,24 @@ textarea {
   min-height: 80px;
   max-height: 240px;
 }
+
+/* styles.css */
+
+.add-user-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .add-user-form .form-input {
+    width: 100%;
+  }
+  
+  .add-user-form .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+  }
+  

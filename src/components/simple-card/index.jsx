@@ -55,6 +55,8 @@ const ProductCard = ({ product, setProducts }) => {
           {product.nombre}
         </Typography>
         <Typography
+        color="textSecondary"
+
           sx={{ fontSize: "15px" }}
           variant="body2"
           component="div"
@@ -66,7 +68,9 @@ const ProductCard = ({ product, setProducts }) => {
         <Typography 
         variant="subtitle1" 
         color="textSecondary"
-        sx={{ fontSize: "13px" }}
+        component="div"
+
+        sx={{ fontSize: "13px", marginBottom:"5px" }}
 
         >
           Stock: {product.stock}
@@ -92,7 +96,9 @@ const ProductCard = ({ product, setProducts }) => {
             </Grid>
             <Grid item>
               <TextField
-                style={{ width: "60px" }}
+    
+                InputProps={{ sx: { height: '32px' } }}
+                sx={{ width: '60px' }}
                 size="small"
                 //label="Cantidad"
                 type="number"

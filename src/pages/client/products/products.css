@@ -25,3 +25,9 @@
     border-radius: 8px;
     margin-bottom: 10px;
   }
+
+  .imagen-carrusel {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+}

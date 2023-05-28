@@ -17,3 +17,40 @@
   color: #fff;
   margin-right: 20px;
 }
+
+img.logo{
+  margin-top:2.5rem;
+  width: 6rem;
+  height: auto;
+}
+
+p.texto_logo{
+  text-shadow: 5px 5px 4px rgba(0, 0, 0, 0.5);
+  font-family: "Rock Salt", cursive;
+}
+
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.line {
+  width: 1px;
+  height: 100%;
+  background: gray;
+}
+
+.text1 {
+  margin-right: 10px;
+  width: 75px;
+  height: 40px;
+ 
+}
+
+.text2 {
+  margin-left: 10px;
+  text-shadow: 7px 7px 4px rgba(0, 0, 0, 0.5);
+  font-family: "Rock Salt", bold;
+}
+

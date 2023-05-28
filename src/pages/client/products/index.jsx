@@ -20,6 +20,9 @@ import { fetchService } from "../../../services/api";
 import { Modal, Button, IconButton } from "@mui/material";
 import "./products.css";
 import ProductCard from "../../../components/simple-card";
+import imagen1 from "../../../assets/instrumentos.jpg";
+import imagen2 from "../../../assets/instrumentos2.jpg";
+import imagen3 from "../../../assets/instrumentos3.jpg";
 
 const Home = ({ handleLogout, setCarProducts }) => {
   const [products, setProducts] = useState([]);
@@ -171,13 +174,13 @@ const Home = ({ handleLogout, setCarProducts }) => {
         <Stack direction="column" className="product-cards">
           <Carousel autoPlay={true} animation="slide">
             <div>
-              <img src="../../images/guitar-wallpaper.png" alt="Slide 1" />
+              <img className="imagen-carrusel" src={imagen1} alt="Slide 1" />
             </div>
             <div>
-              <img src="image2.jpg" alt="Slide 2" />
+              <img className="imagen-carrusel" src={imagen2} alt="Slide 2" />
             </div>
             <div>
-              <img src="image3.jpg" alt="Slide 3" />
+              <img className="imagen-carrusel" src={imagen3} alt="Slide 3" />
             </div>
           </Carousel>
           <div className="product-list">

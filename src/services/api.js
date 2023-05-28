@@ -1,5 +1,6 @@
 import axios from "axios";
 import qs from "qs";
+import auth from "./auth";
 
 const BASE_URL = "http://192.168.126.128/integracion-plataformas";
 
@@ -8,10 +9,11 @@ const ENDPOINTS = {
   login_username: "auth-nomusuario",
   listar_usuarios: "/listar-usuarios",
   listar_productos: "/listar-instrumentos",
+  insertar_usuario: "/insertar-usuario"
 };
 
 export const fetchService = async (method, data, endpoint) => {
-  data.token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEiLCJub21icmVzIjoidXN1YXJpb3MiLCJub21icmV1c3VhcmlvIjoidXN1YXJpb3Rlc3QiLCJhcGVsbGlkb3MiOiJ1c3VhcmlvcyIsImVtYWlsIjoibWFpbEBtYWlsLmNsIiwiZGlyZWNjaW9uIjoiZGlyZWNjaW9uIGRpcmVjY2lvbmNpdGEiLCJydXQiOiJydXQtcnV0IiwicGVyZmlsX25vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJleHAiOjE2ODUxNTcyNzUsInVzdWFyaW9fYWN0aXZvIjoiYWN0aXZvIn0.PgiPlT1OEz3kvx-z6l-Rpc5YXr6-hq0rFmeFiLuAeQE";
+  data.token = auth.getToken();
   const options = {
     method: method,
     maxBodyLength: Infinity,

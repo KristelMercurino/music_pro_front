@@ -2,11 +2,12 @@ import React,{useState} from 'react';
 import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem } from '@mui/material';
 import { ShoppingCart, AccountCircle } from '@mui/icons-material';
 import "./header.css";
+import Logo from "../../assets/MUSICPRO.png";
 
 
 
 const Header = ({ userType, handleLogout }) => {
-  const categories = ['Electronics', 'Books', 'Clothing', 'Home'];
+  const categories = ['Instrumentos', 'Books', 'Clothing', 'Home'];
   const [anchorEl, setAnchorEl] = useState(null); 
 
   userType=localStorage.getItem("role");
@@ -54,7 +55,21 @@ const Header = ({ userType, handleLogout }) => {
     <AppBar position="static" color="primary">
       <Toolbar className='root' variant="dense" sx={{ height: '5px' }}> 
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          My Website
+
+        <div className="container">
+      <img className="text1" src={Logo} alt="Logo" />
+
+        <div className="line"></div>
+        <Typography variant="subtitle1" className="text2">MusicPro</Typography>
+      </div>
+
+        {/* <div className="logo_musicpro">
+
+      <img className="logo" src={Logo} alt="Logo" />
+       <p className="texto_logo">MusicPro</p> 
+
+    </div> */}
+    
         </Typography>
         {renderCartButton()}
         <IconButton color="inherit" onClick={handleMenuOpen}>

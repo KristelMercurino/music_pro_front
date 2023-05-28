@@ -17,7 +17,7 @@ const Footer = () => {
             Enlaces
           </Typography>
           <ul className="footer-links">
-            <li>
+            <li className="text-footer">
               <Link href="#">Inicio</Link>
             </li>
             <li>

@@ -19,7 +19,7 @@ import "./user-header.css";
 const Header = ({ products, setProducts }) => {
   console.log("products header", products)
   const [open, setOpen] = useState(false);
-  const categories = ["Electronics", "Books", "Clothing", "Home"];
+  const categories = ["Guitarras", "Bajos", "Pianos", "Baterias","Amplificadores","Accesorios"];
 
   const handleToggle = () => {
     setOpen(!open);
@@ -77,7 +77,7 @@ const Header = ({ products, setProducts }) => {
                   <ListItem key={product.id} className="cart-list-item">
                     <ListItemText
                       primary={product.nombre}
-                      secondary={`Precio: $${product.precio} Cantidad: ${product.cantidad}`}
+                      secondary={`Precio: $${change_format(product.precio)} Cantidad: ${product.cantidad}`}
                     />
                     <ListItemSecondaryAction>
                       <IconButton
@@ -95,7 +95,7 @@ const Header = ({ products, setProducts }) => {
                 </ListItem> */}
               </List>
               <div className="cart-total">
-              <Typography variant="subtitle1">Total: ${calculateTotal()}</Typography>
+              <Typography variant="subtitle1">Total: ${change_format(calculateTotal())}</Typography>
             </div>
             </div>
           </Collapse>

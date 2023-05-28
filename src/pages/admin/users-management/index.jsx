@@ -30,13 +30,28 @@ const Home = ({ handleLogout }) => {
     [
       {
         label: 'Nombre',
-        name: 'name',
+        name: 'nombres',
         type: 'text',
         fullWidth: true,
       },
       {
-        label: 'Apellido',
-        name: 'lastName',
+        label: 'Apellidos',
+        name: 'apellidos',
+        type: 'text',
+        fullWidth: true,
+      },
+
+    ],
+    [
+      {
+        label: 'Rut',
+        name: 'rut',
+        type: 'text',
+        fullWidth: true,
+      },
+      {
+        label: 'Username',
+        name: 'nombreusuarios',
         type: 'text',
         fullWidth: true,
       },
@@ -46,25 +61,28 @@ const Home = ({ handleLogout }) => {
         label: 'Correo electrónico',
         name: 'email',
         type: 'email',
-        fullWidth: true,
+        fullWidth: false,
       },
       {
-        label: 'Teléfono',
-        name: 'phone',
-        type: 'tel',
-        fullWidth: true,
-      },
+        label: 'Contraseña',
+        name: 'password',
+        type: 'password',
+        fullWidth: false,
+      }
+    ],
+    [
       {
         label: 'Dirección',
-        name: 'address',
+        name: 'direccion',
         type: 'text',
         fullWidth: true,
       },
-    ],
+    ]
   ];
 
 
   const [data, setData] = useState([]);
+  const [addUserForm, setAddUserForm] = useState({});
   const columns = [
     // { field: 'id', headerName: 'ID', width: 70 },
     { field: "nombres", headerName: "Name", width: 150 },
@@ -100,6 +118,30 @@ const Home = ({ handleLogout }) => {
     // setData(response.data?.usuarios) //actualiza la data
   }, []);
 
+
+  const handleSubmitAddUser = async (event) => {
+    event.preventDefault();
+
+    try {
+      // Enviar la solicitud POST para agregar el usuario
+      await fetchService("POST", addUserForm, "insertar_usuario");
+      console.log(addUserForm)
+      // Llamar a la función onSubmit pasando el objeto del usuario
+      // onSubmit(user);
+
+      // Limpiar los campos después de enviar el formulario
+      // setName('');
+      // setEmail('');
+
+      // Ejecutar la función de cerrar pasada como prop
+      //handleCloseModal();
+    } catch (error) {
+      console.error('Error al agregar el usuario:', error);
+    }
+  };
+
+
+
   const fetchAxios = async (method, data, endpoint_name) => {
     try {
       const response = await fetchService(method, data, endpoint_name);
@@ -110,6 +152,8 @@ const Home = ({ handleLogout }) => {
       // Maneja el error si ocurre alguno
     }
   };
+
+
 
   return (
     <div className="table">
@@ -127,7 +171,7 @@ const Home = ({ handleLogout }) => {
         </div>
         <DataTable rows={data} columns={columns} pageSize={10} />
         <Modal
-        component={<AddUserForm handleClose={handleCloseModal} fields={fields} />}
+        component={<AddUserForm handleClose={handleCloseModal} onSubmit={handleSubmitAddUser} fields={fields} formValues={addUserForm} setFormValues={setAddUserForm} />}
         open={modalOpen}
         handleClose={handleCloseModal}
         title="Agregar usuario"

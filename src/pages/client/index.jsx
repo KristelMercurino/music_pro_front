@@ -55,9 +55,9 @@ const Home = ({ handleLogout }) => {
   };
 
   const [products, setProducts] = useState([
-    { nombre: "Camisa", precio: 250, cantidad: 3, id: 1 },
-    { nombre: "Pantalón", precio: 500, cantidad: 2, id: 2 },
-    { nombre: "Zapatos", precio: 800, cantidad: 1, id: 3 }
+    // { nombre: "Camisa", precio: 250, cantidad: 3, id: 1 },
+    // { nombre: "Pantalón", precio: 500, cantidad: 2, id: 2 },
+    // { nombre: "Zapatos", precio: 800, cantidad: 1, id: 3 }
   ]);
   
 
@@ -66,7 +66,7 @@ const Home = ({ handleLogout }) => {
       <ClientHeader products={products}  setProducts={setProducts}/>
       {authorized && role === ALLOWED_ROLE ? (
         <Routes>
-          <Route exact path="/" element={<ClientProducts />} />
+          <Route exact path="/" element={<ClientProducts carProducts={products}  setCarProducts={setProducts} />} />
         </Routes>
       ): (
         <Loading/>

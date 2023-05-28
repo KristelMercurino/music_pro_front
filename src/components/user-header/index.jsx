@@ -12,10 +12,12 @@ import {
   Collapse,
 } from "@mui/material";
 import { ShoppingCart, Delete } from "@mui/icons-material";
+import change_format from "../../utils/utils";
 
 import "./user-header.css";
 
 const Header = ({ products, setProducts }) => {
+  console.log("products header", products)
   const [open, setOpen] = useState(false);
   const categories = ["Electronics", "Books", "Clothing", "Home"];
 
@@ -41,6 +43,9 @@ const Header = ({ products, setProducts }) => {
 
   return (
     <>
+    {
+      products &&
+ 
       <AppBar position="static" className="header">
         <Toolbar className="category-toolbar" variant="dense">
           {/* <div className="logo"> */}
@@ -96,6 +101,7 @@ const Header = ({ products, setProducts }) => {
           </Collapse>
         </div>
       </AppBar>
+         }
     </>
   );
 };

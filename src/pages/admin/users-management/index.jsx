@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
-import PersonAddAltOutlinedIcon from "@mui/icons-material/PersonAddAltOutlined";
-import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
-import PersonRemoveOutlinedIcon from "@mui/icons-material/PersonRemoveOutlined";
-import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
-import CurrencyExchangeOutlinedIcon from "@mui/icons-material/CurrencyExchangeOutlined";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import "./users-management.css";
 
@@ -15,16 +10,10 @@ import { fetchService } from "../../../services/api";
 import AddUserForm from "../../../components/add-user-form";
 import Modal from "../../../components/modal";
 
-import axios from "axios";
-import qs from "qs";
-
-const BASE_URL = "http://192.168.126.128/integracion-plataformas";
-
 const Home = ({ handleLogout }) => {
   const [modalOpen, setModalOpen] = useState(false);
-
   const handleOpenModal = () => {
-    console.log("open modal")
+    console.log("open modal");
     setModalOpen(true);
   };
 
@@ -33,86 +22,81 @@ const Home = ({ handleLogout }) => {
   };
 
   const fields = [
-    {
-      name: 'name',
-      label: 'Nombre',
-      props: {
-        // Otras props opcionales para el TextField
-        required: true,
+    [
+      {
+        label: "Nombre",
+        name: "nombres",
+        type: "text",
+        fullWidth: true,
+        defaultValue: "John"
       },
-    },
-    {
-      name: 'apellidos',
-      label: 'Apellidos',
-      props: {
-        // Otras props opcionales para el TextField
-        required: true,
+      {
+        label: "Apellidos",
+        name: "apellidos",
+        type: "text",
+        fullWidth: true,
+        defaultValue: "John"
       },
-    },
-    {
-      name: 'apellidos',
-      label: 'Apellidos',
-      props: {
-        // Otras props opcionales para el TextField
-        required: true,
-      },
-
     ],
     [
       {
-        label: 'Rut',
-        name: 'rut',
-        type: 'text',
+        label: "Rut",
+        name: "rut",
+        type: "text",
         fullWidth: true,
+        defaultValue: null
       },
       {
-        label: 'Username',
-        name: 'nombreusuario',
-        type: 'text',
+        label: "Username",
+        name: "nombreusuario",
+        type: "text",
         fullWidth: true,
+        defaultValue: "John"
       },
-      
     ],
     [
       {
-        label: 'Correo electrónico',
-        name: 'email',
-        type: 'email',
-        // Otras props opcionales para el TextField
+        label: "Correo electrónico",
+        name: "email",
+        type: "email",
+        fullWidth: false,
+        defaultValue: "John@d.com"
       },
-    },
-    // Otros campos si es necesario
-  ];
-
-  const sidebarOptions = [
-    {
-      label: "Registrar Usuarios",
-      icon: <PersonAddAltOutlinedIcon />,
-      link: "#",
-    },
-    {
-      label: "Editar Usuarios",
-      icon: <ModeEditOutlineOutlinedIcon />,
-      link: "#",
-    },
-    {
-      label: "Eliminar Usuarios",
-      icon: <PersonRemoveOutlinedIcon />,
-      link: "#",
-    },
-    {
-      label: "Generar informes",
-      icon: <BookmarkBorderOutlinedIcon />,
-      link: "#",
-    },
-    {
-      label: "Estrategia de ventas",
-      icon: <CurrencyExchangeOutlinedIcon />,
-      link: "#",
-    },
+      {
+        label: "Contraseña",
+        name: "password",
+        type: "password",
+        fullWidth: false,
+        defaultValue: null
+      },
+    ],
+    [
+      {
+        label: "Dirección",
+        name: "direccion",
+        type: "text",
+        fullWidth: true,
+        defaultValue: "John"
+      },
+    ],
+    [
+      {
+        label: "Tipo uusuario",
+        name: "id_perfil",
+        type: "select",
+        options: [
+          { value: 1, label: "Administrador" },
+          { value: 2, label: "Vendedor" },
+          { value: 3, label: "Bodeguero" },
+          { value: 4, label: "Contador" },
+        ],
+        defaultValue: 2,
+      },
+    ],
   ];
 
   const [data, setData] = useState([]);
+  const [addUserForm, setAddUserForm] = useState({});
   const columns = [
     // { field: 'id', headerName: 'ID', width: 70 },
     { field: "nombres", headerName: "Name", width: 150 },
@@ -141,33 +125,56 @@ const Home = ({ handleLogout }) => {
   ];
 
   useEffect(() => {
-    fetchData();
+    fetchAxios("POST", {}, "listar_usuarios");
     // const response = fetchService('POST', {}, "listar_usuarios");
     // if (response)
     // console.log(response.data);
     // setData(response.data?.usuarios) //actualiza la data
   }, []);
 
-  const fetchData = async () => {
+  const handleSubmitAddUser = async (event) => {
+    event.preventDefault();
+
+    const formData = { ...addUserForm };
+    // Verificar los campos del formulario y asignar los valores por defecto si no se han cambiado
+    // fields.forEach((campo) => {
+    //   if (!(campo.name in formData)) {
+    //     formData[campo.name] = campo.defaultValue;
+    //   }
+    // });
+    fields.forEach((campo) => {
+      if (!(campo.name in formData) || formData[campo.name] === "") {
+        formData[campo.name] = campo.defaultValue || "";
+      }
+      //formData[campo.name] = formValues[campo.name] || campo.defaultValue || "";
+    });
+
     try {
-      let requestData = {};
-      requestData.token =
-        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEiLCJub21icmVzIjoidXN1YXJpb3MiLCJub21icmV1c3VhcmlvIjoidXN1YXJpb3Rlc3QiLCJhcGVsbGlkb3MiOiJ1c3VhcmlvcyIsImVtYWlsIjoibWFpbEBtYWlsLmNsIiwiZGlyZWNjaW9uIjoiZGlyZWNjaW9uIGRpcmVjY2lvbmNpdGEiLCJydXQiOiJydXQtcnV0IiwicGVyZmlsX25vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJleHAiOjE2ODUxNTcyNzUsInVzdWFyaW9fYWN0aXZvIjoiYWN0aXZvIn0.PgiPlT1OEz3kvx-z6l-Rpc5YXr6-hq0rFmeFiLuAeQE";
-      const options = {
-        method: "POST",
-        maxBodyLength: Infinity,
-        // headers: {
-        //   "content-type": "application/x-www-form-urlencoded",
-        //   "Access-Control-Allow-Origin": "*",
-        // },
-        data: qs.stringify(requestData),
-        url: `${BASE_URL}/listar-usuarios`,
-      };
-      const response = await axios(options);
-      console.log(response.data);
-      setData(response.data.data.usuarios);
+      // Enviar la solicitud POST para agregar el usuario
+      await fetchService("POST", formData, "insertar_usuario");
+      console.log(formData);
+      // Llamar a la función onSubmit pasando el objeto del usuario
+      // onSubmit(user);
+
+      // Limpiar los campos después de enviar el formulario
+      // setName('');
+      // setEmail('');
+
+      // Ejecutar la función de cerrar pasada como prop
+      //handleCloseModal();
     } catch (error) {
-      console.error(error);
+      console.error("Error al agregar el usuario:", error);
+    }
+  };
+
+  const fetchAxios = async (method, data, endpoint_name) => {
+    try {
+      const response = await fetchService(method, data, endpoint_name);
+      setData(response.data.usuarios);
+
+      // Realiza las acciones necesarias con los datos de respuesta
+    } catch (error) {
+      // Maneja el error si ocurre alguno
     }
   };
 
@@ -187,13 +194,20 @@ const Home = ({ handleLogout }) => {
         </div>
         <DataTable rows={data} columns={columns} pageSize={10} />
         <Modal
-        component={<AddUserForm handleClose={handleCloseModal} fields={fields} />}
-        open={modalOpen}
-        handleClose={handleCloseModal}
-        title="Agregar usuario"
-      />
+          component={
+            <AddUserForm
+              handleClose={handleCloseModal}
+              onSubmit={handleSubmitAddUser}
+              fields={fields}
+              formValues={addUserForm}
+              setFormValues={setAddUserForm}
+            />
+          }
+          open={modalOpen}
+          handleClose={handleCloseModal}
+          title="Agregar usuario"
+        />
       </div>
-
     </div>
   );
 };

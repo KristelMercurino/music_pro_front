@@ -56,28 +56,27 @@ const Home = ({ handleLogout }) => {
         // Otras props opcionales para el TextField
         required: true,
       },
-    },
-    {
-      name: 'rut',
-      label: 'Rut',
-      props: {
-        // Otras props opcionales para el TextField
-        required: true,
+
+    ],
+    [
+      {
+        label: 'Rut',
+        name: 'rut',
+        type: 'text',
+        fullWidth: true,
       },
-    },
-    {
-      name: 'nombreusuarios',
-      label: 'Nombre usuarios',
-      props: {
-        // Otras props opcionales para el TextField
-        required: true,
+      {
+        label: 'Username',
+        name: 'nombreusuario',
+        type: 'text',
+        fullWidth: true,
       },
-    },
-    
-    {
-      name: 'email',
-      label: 'Email',
-      props: {
+      
+    ],
+    [
+      {
+        label: 'Correo electrónico',
+        name: 'email',
         type: 'email',
         // Otras props opcionales para el TextField
       },

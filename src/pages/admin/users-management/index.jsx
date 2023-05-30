@@ -46,10 +46,11 @@ const Home = ({ handleLogout }) => {
       },
       {
         label: 'Username',
-        name: 'nombreusuarios',
+        name: 'nombreusuario',
         type: 'text',
         fullWidth: true,
       },
+      
     ],
     [
       {

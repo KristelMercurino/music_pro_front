@@ -14,7 +14,7 @@ import AdminHome from "./pages/admin";
 import ClientHome from "./pages/client";
 import AccountantHome from "./pages/accountant-home";
 import AccountantTracking from "./pages/accountant-tracking";
-import SellerHome from "./pages/seller-home";
+import SellerHome from "./pages/seller";
 import GrocerHome from "./pages/grocer-home";
 
 import {ROLE_REDIRECT} from './constants/home_roles'
@@ -76,7 +76,7 @@ function App() {
           </Route>
 
           <Route
-            path="/seller-home"
+            path="/seller/*"
             element={<SellerHome handleLogout={handleLogout} />}
           />
 

@@ -9,7 +9,8 @@ const ENDPOINTS = {
   login_username: "auth-nomusuario",
   listar_usuarios: "/listar-usuarios",
   listar_productos: "/listar-instrumentos",
-  insertar_usuario: "/insertar-usuario"
+  insertar_usuario: "/insertar-usuario",
+  listar_pedidos: "/listar-pedidos",
 };
 
 export const fetchService = async (method, data, endpoint) => {

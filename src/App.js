@@ -12,6 +12,7 @@ import Header from "./components/simple-header";
 import Footer from "./components/simple-footer";
 import AdminHome from "./pages/admin";
 import ClientHome from "./pages/client";
+import ClientRegister from "./pages/client-register";
 import AccountantHome from "./pages/accountant-home";
 import AccountantTracking from "./pages/accountant-tracking";
 import SellerHome from "./pages/seller";
@@ -87,6 +88,9 @@ function App() {
 
           {/* <Route path="/client-home" element={<ClientHome handleLogout={handleLogout}/>} /> */}
           <Route path="/login" element={<Login handleLogin={handleLogin} />} />
+          <Route path="/login-staff" element={<Login handleLogin={handleLogin} />} />
+          <Route path="/register" element={<ClientRegister />} />
+          
           <Route
             path="/logout"
             element={<button onClick={handleLogout}>Logout</button>}

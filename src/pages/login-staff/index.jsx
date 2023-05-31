@@ -20,7 +20,7 @@ const Login = ({ handleLogin }) => {
       console.log(response);
       const user_data = JSON.stringify(response.data.datos_usuario);
       const token = response.data.token;
-      const role = "Cliente";
+      const role = response.data.datos_usuario.perfil_nombre;
       handleLogin(role, token, user_data)
       // Realiza las acciones necesarias con los datos de respuesta
     } catch (error) {
@@ -35,7 +35,7 @@ const Login = ({ handleLogin }) => {
       email: username,
       password: password
     }
-    fetchAxios("POST", data, "login_cliente");
+    fetchAxios("POST", data, "login_email");
     
     //handleLogin(username, password, role);
   };

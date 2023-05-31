@@ -28,14 +28,14 @@ const Home = ({ handleLogout }) => {
         name: "nombres",
         type: "text",
         fullWidth: true,
-        defaultValue: "John"
+        defaultValue: "John",
       },
       {
         label: "Apellidos",
         name: "apellidos",
         type: "text",
         fullWidth: true,
-        defaultValue: "John"
+        defaultValue: "John",
       },
     ],
     [
@@ -44,14 +44,14 @@ const Home = ({ handleLogout }) => {
         name: "rut",
         type: "text",
         fullWidth: true,
-        defaultValue: null
+        defaultValue: "7515555-7",
       },
       {
         label: "Username",
         name: "nombreusuario",
         type: "text",
         fullWidth: true,
-        defaultValue: "John"
+        defaultValue: "John",
       },
     ],
     [
@@ -60,14 +60,14 @@ const Home = ({ handleLogout }) => {
         name: "email",
         type: "email",
         fullWidth: false,
-        defaultValue: "John@d.com"
+        defaultValue: "John@d.com",
       },
       {
         label: "Contraseña",
         name: "password",
         type: "password",
         fullWidth: false,
-        defaultValue: null
+        defaultValue: null,
       },
     ],
     [
@@ -76,7 +76,7 @@ const Home = ({ handleLogout }) => {
         name: "direccion",
         type: "text",
         fullWidth: true,
-        defaultValue: "John"
+        defaultValue: "John",
       },
     ],
     [
@@ -114,7 +114,10 @@ const Home = ({ handleLogout }) => {
           <div>
             <IconButton
               color="inherit" // Establece el color del icono como transparente
-              // onClick={handleClick}
+              onClick={(e)=> {
+        console.log("params", params.row)
+
+              }}
             >
               <CheckCircleIcon />
             </IconButton>
@@ -142,12 +145,12 @@ const Home = ({ handleLogout }) => {
     //     formData[campo.name] = campo.defaultValue;
     //   }
     // });
-    fields.forEach((campo) => {
-      if (!(campo.name in formData) || formData[campo.name] === "") {
-        formData[campo.name] = campo.defaultValue || "";
-      }
-      //formData[campo.name] = formValues[campo.name] || campo.defaultValue || "";
-    });
+    // fields.forEach((campo) => {
+    //   if (!(campo.name in formData) || formData[campo.name] === "") {
+    //     formData[campo.name] = campo.defaultValue || "";
+    //   }
+    //   //formData[campo.name] = formValues[campo.name] || campo.defaultValue || "";
+    // });
 
     try {
       // Enviar la solicitud POST para agregar el usuario
@@ -161,7 +164,9 @@ const Home = ({ handleLogout }) => {
       // setEmail('');
 
       // Ejecutar la función de cerrar pasada como prop
-      //handleCloseModal();
+      handleCloseModal();
+      // Recargar la página después de enviar el formulario
+      window.location.reload();
     } catch (error) {
       console.error("Error al agregar el usuario:", error);
     }

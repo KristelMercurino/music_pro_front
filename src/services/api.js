@@ -6,10 +6,12 @@ const BASE_URL = "http://192.168.126.128/integracion-plataformas";
 
 const ENDPOINTS = {
   login_email: "/auth-email",
+  login_cliente: "/autenticar-cliente",
   login_username: "auth-nomusuario",
   listar_usuarios: "/listar-usuarios",
   listar_productos: "/listar-instrumentos",
   insertar_usuario: "/insertar-usuario",
+  insertar_cliente: "/agregar-cliente",
   listar_pedidos: "/listar-pedidos",
 };
 
